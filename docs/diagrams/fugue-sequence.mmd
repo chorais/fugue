@@ -1,0 +1,44 @@
+sequenceDiagram
+    autonumber
+
+    participant Initiator
+    participant Orchestrator
+    participant Architect
+    participant Implementer
+    participant Auditor
+    participant Verifier
+    participant Curator
+
+    %% Bootstrap
+    Initiator->>Orchestrator: Deliver validated tranche preamble
+    Orchestrator->>Orchestrator: Validate bootstrap state<br/>folders, envelopes, metadata
+
+    %% Interpretation
+    Orchestrator->>Architect: Request Initial DECOR<br/>decor.md + metadata
+    Architect-->>Orchestrator: Return Initial DECOR
+    Orchestrator->>Orchestrator: Initialise Ticket Map<br/>tickets + sequencing
+    Architect->>Architect: Apply selected DECOR grounding strategy<br/>within Interpretation
+
+    %% Implementation (Ticket Loop)
+    loop For each ticket
+        Orchestrator->>Implementer: Dispatch ticket<br/>with DECOR subset + metadata
+        Implementer->>Implementer: Execute ticket<br/>code, tests, session-logs/, replay-traces/
+        Implementer-->>Orchestrator: Return outputs<br/>session-logs/ + replay-traces/ + surfaced truths
+        Orchestrator->>Orchestrator: Validate acceptance criteria
+    end
+
+    %% Reconciliation
+    Orchestrator->>Auditor: Provide all tranche artefacts
+    Auditor->>Auditor: Classify drift<br/>gov / invariant / arch / impl / test / doc / naming / namespace / identity
+    Auditor->>Architect: Request structural reconciliation
+    Architect-->>Auditor: Return DECOR updates
+    Auditor->>Orchestrator: Deliver Reconciled DECOR draft
+
+    %% Verification
+    Orchestrator->>Verifier: Provide artefacts for verification
+    Verifier->>Verifier: Execute golden, dark, governance, replay tests
+    Verifier-->>Orchestrator: Verification results
+
+    %% Closure
+    Orchestrator->>Curator: Submit closure-report.md + tranche artefacts
+    Curator-->>Orchestrator: Approve closure

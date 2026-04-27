@@ -1,0 +1,50 @@
+flowchart TB
+
+    %% Styles
+    classDef artifact fill:#ffffff,stroke:#999,stroke-width:1px,color:#333;
+    classDef process fill:#eef7ff,stroke:#7aa0d8,stroke-width:1px,color:#1a2a3a;
+    classDef persona fill:#e8f5e9,stroke:#7cb342,stroke-width:1px,color:#1b5e20;
+    classDef output fill:#fff7e6,stroke:#e6a23c,stroke-width:1px,color:#5c3d00;
+
+    %% Inputs
+    subgraph INPUTS["Resume Substrate (Required Inputs)"]
+        TM["ticket-map.md"]:::artifact
+        LET["Last Executed Ticket<br/>ticket.md"]:::artifact
+        SESSION_OUTPUT["Implementer Output<br/>session-logs/ + replay-traces/"]:::artifact
+        RDECOR["reconciled-decor.md<br/>(if available)"]:::artifact
+        PRE["tranche-preamble.md<br/>(optional)"]:::artifact
+    end
+
+    %% Orchestrator Resume Mode
+    ORCH["Orchestrator<br/>Restart Mode"]:::persona
+
+    %% Processes
+    subgraph PROCESS["Resume Process (v2.4)"]
+        RECON["Reconstruct Tranche State<br/>from artefacts"]:::process
+        VALDECOR["Validate Architectural Continuity<br/>against DECOR surfaces"]:::process
+        VALEXEC["Validate Execution Continuity<br/>against Ticket Map"]:::process
+        NEXTTICKET["Identify Next Executable Ticket<br/>authoritative sequencing"]:::process
+    end
+
+    %% Outputs
+    subgraph OUTPUTS["Outputs"]
+        SUMMARY["Resume Summary"]:::output
+        CONTVAL["Continuity Validation"]:::output
+        NEXT["Next Ticket<br/>(Authoritative Next Step)"]:::output
+    end
+
+    %% Flow
+    TM --> ORCH
+    LET --> ORCH
+    SESSION_OUTPUT --> ORCH
+    RDECOR --> ORCH
+    PRE --> ORCH
+
+    ORCH --> RECON
+    RECON --> VALDECOR
+    VALDECOR --> VALEXEC
+    VALEXEC --> NEXTTICKET
+
+    NEXTTICKET --> SUMMARY
+    NEXTTICKET --> CONTVAL
+    NEXTTICKET --> NEXT

@@ -1,0 +1,107 @@
+flowchart TD
+
+    %% ============================
+    %% ROOT GOVERNANCE LAYER
+    %% ============================
+
+    GOV["🛡️ Governance Envelope<br/>(Root Governance Substrate)"]
+    LIFECYCLE["🔄 Lifecycle Contract<br/>(Phase + Transition Rules)"]
+    DECOR["📘 DECOR Specification<br/>(Architectural + Governance Ledger)"]
+    DETERMINISM["🎛️ Determinism Envelope<br/>(Deterministic Execution Rules)"]
+    IDENTITY["🧬 Identity Propagation Contract<br/>(Lineage + Persona Identity)"]
+    NAMESPACE["📁 Namespace Scheme Contract<br/>(Folder + Placement Rules)"]
+    NAMING["🏷️ Naming Scheme Contract<br/>(Naming Rules)"]
+    DOCS["📚 Documentation Envelope<br/>(Governed Documentation Rules)"]
+
+    GOV --> LIFECYCLE
+    GOV --> DECOR
+    GOV --> DETERMINISM
+    GOV --> IDENTITY
+    GOV --> NAMESPACE
+    GOV --> NAMING
+    GOV --> DOCS
+
+    %% ============================
+    %% HIERARCHY LAYERS
+    %% ============================
+
+    PROJECT["🏛️ Project Layer<br/>Project DECOR + Project Ticket Map"]
+    BRANCH["🌿 Branch Layer<br/>Branch DECOR + Branch Ticket Map"]
+    THEME["🎨 Theme Layer<br/>Theme DECOR + Theme Ticket Map"]
+    TRANCHE["📦 Tranche Layer<br/>Tranche DECOR + Tranche Ticket Map"]
+    TICKET_LAYER["🎫 Ticket Layer<br/>Ticket Work Units"]
+
+    PROJECT --> BRANCH
+    BRANCH --> THEME
+    THEME --> TRANCHE
+    TRANCHE --> TICKET_LAYER
+
+    DECOR --> PROJECT
+    DECOR --> BRANCH
+    DECOR --> THEME
+    DECOR --> TRANCHE
+    DECOR --> TICKET_LAYER
+
+    %% ============================
+    %% TICKET MAP + EXECUTION
+    %% ============================
+
+    TMAP["🗺️ Ticket Map Contract<br/>(Execution Plan)"]
+    TICKETS["🎫 Tickets<br/>(Atomic Governed Work Items)"]
+    IMPL["⚙️ Implementation Logs<br/>(Implementer Output)"]
+    REPLAY["🔁 Replay Trace Contract<br/>(Deterministic Replay)"]
+    VERIFY["🔍 Verification<br/>(Auditor → Verifier)"]
+    RECON["🧾 Reconciliation<br/>(Reconciled DECOR + Artefacts)"]
+    CLOSURE["🔒 Closure<br/>(Finalisation + Approval)"]
+
+    TRANCHE --> TMAP
+    TMAP --> TICKETS
+    TICKETS --> IMPL
+    IMPL --> REPLAY
+    REPLAY --> VERIFY
+    VERIFY --> RECON
+    RECON --> CLOSURE
+
+    %% ============================
+    %% CROSS-CUTTING CONTRACTS
+    %% ============================
+
+    IDENTITY --> TMAP
+    IDENTITY --> TICKETS
+    IDENTITY --> IMPL
+    IDENTITY --> REPLAY
+    IDENTITY --> VERIFY
+    IDENTITY --> RECON
+
+    DETERMINISM --> TMAP
+    DETERMINISM --> IMPL
+    DETERMINISM --> REPLAY
+    DETERMINISM --> VERIFY
+
+    DOCS --> TMAP
+    DOCS --> TICKETS
+    DOCS --> IMPL
+    DOCS --> RECON
+
+    NAMESPACE --> TMAP
+    NAMESPACE --> TICKETS
+    NAMESPACE --> IMPL
+    NAMESPACE --> REPLAY
+    NAMESPACE --> RECON
+
+    NAMING --> TMAP
+    NAMING --> TICKETS
+    NAMING --> IMPL
+    NAMING --> REPLAY
+    NAMING --> RECON
+
+    LIFECYCLE --> TMAP
+    LIFECYCLE --> TICKETS
+    LIFECYCLE --> VERIFY
+    LIFECYCLE --> CLOSURE
+
+    %% ============================
+    %% FINAL OUTPUT
+    %% ============================
+
+    CLOSURE --> GOV

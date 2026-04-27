@@ -1,0 +1,82 @@
+flowchart TD
+
+    %% Root Level
+    PROJECT["📘 Project<br/>Governance Root<br/>Identity + Namespace Root"]
+
+    %% Branch Level
+    BRANCH["🌿 Branch<br/>Execution Lane<br/>Realises Themes"]
+
+    %% Theme Level
+    THEME["🎨 Theme<br/>Conceptual Workstream<br/>Realised Inside Branch"]
+
+    %% Tranche Level
+    TRANCHE["📦 Tranche<br/>Atomic Lifecycle Unit<br/>Lifecycle‑Scoped"]
+
+    %% Ticket Level
+    TICKET["🎫 Ticket<br/>Atomic Execution Unit<br/>Implementer‑Scoped"]
+
+    %% Hierarchy
+    PROJECT --> BRANCH
+    BRANCH --> THEME
+    THEME --> TRANCHE
+    TRANCHE --> TICKET
+
+    %% Project Artefacts
+    subgraph P["Project Artefacts (v2.4)"]
+        P1["project-preamble.md"]
+        P2["governance-envelope.md"]
+        P3["naming-scheme.md"]
+        P4["namespace-scheme.md"]
+        P5["identity-propagation.md"]
+        P6["persona-map.md"]
+        P7["documentation-envelope.md"]
+    end
+
+    PROJECT --> P
+
+    %% Branch Artefacts
+    subgraph B["Branch Artefacts (v2.4)"]
+        B1["branch-metadata.md"]
+        B2["branch-governance.md"]
+        B3["branch-naming.md"]
+        B4["branch-namespace.md"]
+        B5["branch-identity.md"]
+    end
+
+    BRANCH --> B
+
+    %% Theme Artefacts
+    subgraph T["Theme Artefacts (v2.4)"]
+        T1["theme-intent.md"]
+        T2["theme-scope.md"]
+        T3["theme-boundaries.md"]
+        T4["theme-governance.md"]
+    end
+
+    THEME --> T
+
+    %% Tranche Artefacts
+    subgraph TR["Tranche Artefacts (v2.4)"]
+        TR1["tranche-preamble.md"]
+        TR2["decor.md (Initial DECOR)"]
+        TR3["decor-updates/"]
+        TR4["reconciled-decor.md"]
+        TR5["ticket-map.md"]
+        TR6["session-logs/"]
+        TR7["session-logs/03-reconciliation-log.md"]
+        TR8["closure-report.md"]
+        TR9["replay-traces/"]
+    end
+
+    TRANCHE --> TR
+
+    %% Ticket Artefacts
+    subgraph TK["Ticket Artefacts (v2.4)"]
+        TK1["ticket.md"]
+        TK2["implementer-output.md"]
+        TK3["implementation-log.md"]
+        TK4["replay-trace.json"]
+        TK5["audit-surface.md"]
+    end
+
+    TICKET --> TK

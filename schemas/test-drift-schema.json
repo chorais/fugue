@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fugue.dev/schemas/test-drift-schema.json",
+  "title": "Fugue Test Drift Schema (v2.4)",
+  "description": "Canonical schema for drift classification artefacts in Fugue v2.4.",
+  "type": "object",
+
+  "required": [
+    "drift-id",
+    "test-id",
+    "tranche",
+    "ticket",
+    "classification",
+    "surfaces",
+    "governance",
+    "determinism",
+    "evaluator",
+    "identity",
+    "namespace",
+    "metadata",
+    "replay",
+    "documentation",
+    "lifecycle",
+    "timestamp"
+  ],
+
+  "properties": {
+    "drift-id": {
+      "type": "string",
+      "pattern": "^drift-[0-9]+(\\.[0-9]+)*$",
+      "description": "Unique identifier for the drift artefact."
+    },
+
+    "test-id": {
+      "type": "string",
+      "pattern": "^([a-z-]+)-test-[0-9]+(\\.[0-9]+)*$",
+      "description": "ID of the test that detected this drift."
+    },
+
+    "tranche": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+\\.[a-z0-9]+\\.[a-z0-9-]+$",
+      "description": "Tranche name following <branch>.<theme>.<semantic-name>."
+    },
+
+   "ticket": {
+      "type": "string",
+      "pattern": "^T[0-9]+$",
+      "description": "Ticket ID following T<number>."
+    },  
+
+    "classification": {
+      "type": "string",
+      "enum": ["Minor", "Major", "Critical"],
+      "description": "Severity of the drift."
+    },
+
+    "surfaces": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of drift surfaces involved."
+    },
+
+    "governance": {
+      "type": "object",
+      "required": ["violation", "rule"],
+      "properties": {
+        "violation": { "type": "string" },
+        "rule": { "type": "string" }
+      }
+    },
+
+    "determinism": {
+      "type": "object",
+      "required": ["ordering", "state-transitions", "metadata-propagation", "identity-propagation", "namespace-propagation"],
+      "properties": {
+        "ordering": { "type": "string" },
+        "state-transitions": { "type": "string" },
+        "metadata-propagation": { "type": "string" },
+        "identity-propagation": { "type": "string" },
+        "namespace-propagation": { "type": "string" }
+      }
+    },
+
+    "evaluator": {
+      "type": "object",
+      "required": ["drift", "diagnostics"],
+      "properties": {
+        "drift": { "type": "string" },
+        "diagnostics": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "identity": {
+      "type": "object",
+      "required": ["lineage", "propagation"],
+      "properties": {
+        "lineage": { "type": "string" },
+        "propagation": { "type": "string" }
+      }
+    },
+
+    "namespace": {
+      "type": "object",
+      "required": ["placement", "invariants"],
+      "properties": {
+        "placement": { "type": "string" },
+        "invariants": { "type": "string" }
+      }
+    },
+
+    "metadata": {
+      "type": "object",
+      "required": ["propagation", "completeness"],
+      "properties": {
+        "propagation": { "type": "string" },
+        "completeness": { "type": "string" }
+      }
+    },
+
+    "replay": {
+      "type": "object",
+      "required": ["ordering", "state-transitions", "identity-propagation", "metadata-propagation", "evaluator-behaviour"],
+      "properties": {
+        "ordering": { "type": "string" },
+        "state-transitions": { "type": "string" },
+        "identity-propagation": { "type": "string" },
+        "metadata-propagation": { "type": "string" },
+        "evaluator-behaviour": { "type": "string" }
+      }
+    },
+
+    "documentation": {
+      "type": "object",
+      "required": ["surfaces", "placement", "metadata"],
+      "properties": {
+        "surfaces": { "type": "string" },
+        "placement": { "type": "string" },
+        "metadata": { "type": "string" }
+      }
+    },
+
+    "lifecycle": {
+      "type": "object",
+      "required": ["phase", "transition"],
+      "properties": {
+        "phase": { "type": "string" },
+        "transition": { "type": "string" }
+      }
+    },
+
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when drift was recorded."
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fugue.dev/schemas/test-results-schema.json",
+  "title": "Fugue Test Results Schema (v2.4)",
+  "description": "Canonical schema for all Fugue v2.4 test result artefacts.",
+  "type": "object",
+  "required": [
+    "test-id",
+    "tranche",
+    "ticket",
+    "test-type",
+    "result",
+    "determinism",
+    "evaluator",
+    "identity",
+    "namespace",
+    "metadata",
+    "replay",
+    "governance",
+    "documentation",
+    "lifecycle",
+    "drift",
+    "timestamp"
+  ],
+  "properties": {
+    "test-id": {
+      "type": "string",
+      "pattern": "^([a-z-]+)-test-[0-9]+(\\.[0-9]+)*$",
+      "description": "ID of the test that produced this result."
+    },
+    "tranche": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+\\.[a-z0-9]+\\.[a-z0-9-]+$",
+      "description": "Tranche name following <branch>.<theme>.<semantic-name>."
+    },
+    "ticket": {
+      "type": "string",
+      "pattern": "^T[0-9]+$",
+      "description": "Ticket ID following T<number>."
+    },
+    "test-type": {
+      "type": "string",
+      "enum": [
+        "dark",
+        "golden",
+        "governance",
+        "replay"
+      ],
+      "description": "Type of test executed."
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "Pass",
+        "Fail"
+      ],
+      "description": "Overall result of the test."
+    },
+    "determinism": {
+      "type": "object",
+      "required": [
+        "ordering",
+        "state-transitions",
+        "metadata-propagation",
+        "identity-propagation",
+        "namespace-propagation"
+      ],
+      "properties": {
+        "ordering": {
+          "type": "string"
+        },
+        "state-transitions": {
+          "type": "string"
+        },
+        "metadata-propagation": {
+          "type": "string"
+        },
+        "identity-propagation": {
+          "type": "string"
+        },
+        "namespace-propagation": {
+          "type": "string"
+        }
+      }
+    },
+    "evaluator": {
+      "type": "object",
+      "required": [
+        "diagnostics",
+        "determinism",
+        "governance"
+      ],
+      "properties": {
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "determinism": {
+          "type": "string"
+        },
+        "governance": {
+          "type": "string"
+        }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "lineage",
+        "propagation"
+      ],
+      "properties": {
+        "lineage": {
+          "type": "string"
+        },
+        "propagation": {
+          "type": "string"
+        }
+      }
+    },
+    "namespace": {
+      "type": "object",
+      "required": [
+        "placement",
+        "invariants"
+      ],
+      "properties": {
+        "placement": {
+          "type": "string"
+        },
+        "invariants": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "propagation",
+        "completeness"
+      ],
+      "properties": {
+        "propagation": {
+          "type": "string"
+        },
+        "completeness": {
+          "type": "string"
+        }
+      }
+    },
+    "replay": {
+      "type": "object",
+      "required": [
+        "ordering",
+        "state-transitions",
+        "identity-propagation",
+        "metadata-propagation",
+        "evaluator-behaviour"
+      ],
+      "properties": {
+        "ordering": {
+          "type": "string"
+        },
+        "state-transitions": {
+          "type": "string"
+        },
+        "identity-propagation": {
+          "type": "string"
+        },
+        "metadata-propagation": {
+          "type": "string"
+        },
+        "evaluator-behaviour": {
+          "type": "string"
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "persona-boundaries",
+        "lifecycle",
+        "decor",
+        "documentation"
+      ],
+      "properties": {
+        "persona-boundaries": {
+          "type": "string"
+        },
+        "lifecycle": {
+          "type": "string"
+        },
+        "decor": {
+          "type": "string"
+        },
+        "documentation": {
+          "type": "string"
+        }
+      }
+    },
+    "documentation": {
+      "type": "object",
+      "required": [
+        "surfaces",
+        "placement",
+        "metadata"
+      ],
+      "properties": {
+        "surfaces": {
+          "type": "string"
+        },
+        "placement": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "string"
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "required": [
+        "phase",
+        "transition"
+      ],
+      "properties": {
+        "phase": {
+          "type": "string"
+        },
+        "transition": {
+          "type": "string"
+        }
+      }
+    },
+    "drift": {
+      "type": "object",
+      "required": [
+        "classification",
+        "surfaces"
+      ],
+      "properties": {
+        "classification": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Minor",
+            "Major",
+            "Critical"
+          ]
+        },
+        "surfaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of test execution."
+    }
+  }
+}

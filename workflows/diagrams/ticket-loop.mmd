@@ -1,0 +1,14 @@
+flowchart TD
+    A[Ticket Loop start] --> B[Orchestrator selects next ticket<br/>from Ticket Map]
+    B --> C[Orchestrator dispatches ticket<br/>with DECOR subset + metadata]
+    C --> D[Implementer executes ticket<br/>code, tests, session-logs/, replay-traces/]
+    D --> E[Implementer surfaces technical truths<br/>feasibility, contradictions, risks]
+    E --> F[Orchestrator reviews outputs<br/>checks acceptance criteria + metadata]
+    F --> G{Ticket acceptable?}
+    G -- No --> H[Orchestrator issues clarifications<br/>updates ticket if required]
+    H --> C
+    G -- Yes --> I[Ticket marked complete<br/>Ticket Map updated]
+    I --> J{More tickets in tranche?}
+    J -- Yes --> B
+    J -- No --> K[Ticket Loop complete<br/>Lifecycle moves to Reconciliation Phase]
+    K --> L[End Ticket Loop]

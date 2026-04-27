@@ -1,0 +1,12 @@
+flowchart TD
+    A[Start Bootstrap] --> B[Initiator validates tranche preamble]
+    B --> C[Initiator creates tranche substrate<br/>tranche-preamble.md, decor.md, decor-updates/, ticket-map.md, session-logs/, replay-traces/]
+    C --> D[Initiator generates envelopes:<br/>Documentation Envelope<br/>Initial DECOR Envelope (decor.md placeholder)<br/>Ticket Map Skeleton]
+    D --> E[Initiator validates templates and metadata<br/>naming, namespace, identity roots]
+    E --> F[Initiator registers tranche in project index]
+    F --> G[Orchestrator reviews bootstrap state<br/>checks folders, envelopes, metadata, templates]
+    G --> H{Bootstrap complete?}
+    H -- No --> I[Surface bootstrap drift<br/>Initiator corrects<br/>repeat validation]
+    I --> G
+    H -- Yes --> J[Bootstrap complete<br/>Lifecycle moves to Interpretation Phase]
+    J --> K[End Bootstrap]

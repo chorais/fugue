@@ -1,0 +1,28 @@
+flowchart TD
+    A[Start Reconciliation Phase] --> B[Auditor compares:<br/>Initial DECOR, Ticket Map, implementation, tests, docs]
+    B --> C[Auditor classifies drift<br/>governance / invariant / architectural / implementation / test / documentation / naming / namespace / identity]
+    C --> D[Architect performs structural reconciliation<br/>updates DECOR surfaces + metadata]
+    D --> E[Reconciled DECOR drafted<br/>reconciled-decor.md]
+    E --> F[Auditor writes session-logs/03-reconciliation-log.md]
+
+    F --> G{Epilogue required?}
+    G -- No --> H[Verification Phase begins<br/>Verifier executes golden, dark, governance, replay tests]
+    G -- Yes --> R1[Reconciliation Phase: Epilogue Handling (if required)]
+
+    R1 --> R2[Orchestrator generates epilogue tickets<br/>after Auditor drift classification]
+    R2 --> R3[Implementer (delegated from Implementation Mode)<br/>executes epilogue ticket: code, tests, session-logs/, replay-traces/]
+    R3 --> R4[Auditor validates corrections<br/>drift resolved?]
+    R4 --> R5{All drift resolved?}
+    R5 -- No --> R2
+    R5 -- Yes --> R6[Verifier (delegated from Verification Mode)<br/>validates corrective ticket outputs]
+    R6 --> R7{Corrective outputs valid?}
+    R7 -- No --> R2
+    R7 -- Yes --> R8[Architect updates Reconciled DECOR if needed]
+    R8 --> H
+
+    H --> I{All verification checks pass?}
+    I -- No --> D
+    I -- Yes --> J[Closure Phase<br/>Orchestrator + Curator]
+
+    J --> K[Epilogue actions finalised<br/>closure report + archival]
+    K --> L[Tranche closed]

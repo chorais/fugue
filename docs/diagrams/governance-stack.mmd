@@ -1,0 +1,82 @@
+flowchart TB
+
+    %% ============================
+    %% LAYER 0 — ROOT GOVERNANCE SUBSTRATE
+    %% ============================
+
+    L0["🛡️ LAYER 0 — Governance Envelope<br/>Root Governance Substrate<br/>Invariants • Persona Boundaries • Governance Posture"]
+
+    %% ============================
+    %% LAYER 1 — STRUCTURAL CONTRACTS
+    %% ============================
+
+    subgraph L1["LAYER 1 — Structural Contracts<br/>Methodological Grammar"]
+        DECOR["📘 DECOR Specification<br/>Architectural + Governance Ledger"]
+        LIFECYCLE["🔄 Lifecycle Contract<br/>Phase + Transition Rules"]
+        IDENTITY["🧬 Identity Propagation Contract<br/>Identity Lineage + Persona Identity"]
+        NAMING["🏷️ Naming Scheme Contract<br/>Deterministic Naming Rules"]
+        NAMESPACE["📁 Namespace Scheme Contract<br/>Folder + Placement Rules"]
+        DOCS["📚 Documentation Envelope<br/>Governed Documentation Rules"]
+        DETERMINISM["🎛️ Determinism Envelope<br/>Deterministic Execution Rules"]
+    end
+
+    %% ============================
+    %% LAYER 2 — HIERARCHY CONTRACTS
+    %% ============================
+
+    subgraph L2["LAYER 2 — Hierarchy Contracts<br/>Governance Layers"]
+        PROJECT["🏛️ Project Layer<br/>Project DECOR + Ticket Map"]
+        BRANCH["🌿 Branch Layer<br/>Branch DECOR + Ticket Map"]
+        THEME["🎨 Theme Layer<br/>Theme DECOR + Ticket Map"]
+        TRANCHE["📦 Tranche Layer<br/>Tranche DECOR + Ticket Map"]
+        TICKET_LAYER["🎫 Ticket Layer<br/>Ticket Work Units"]
+    end
+
+    %% ============================
+    %% LAYER 3 — EXECUTION CONTRACTS
+    %% ============================
+
+    subgraph L3["LAYER 3 — Execution Contracts<br/>Operational Machinery"]
+        TMAP["🗺️ Ticket Map Contract<br/>Execution Plan + Persona Routing"]
+        TICKETS["🎫 Ticket Template<br/>Atomic Governed Work Items"]
+        REPLAY["🔁 Replay Trace Contract<br/>Deterministic Replay Model"]
+    end
+
+    %% ============================
+    %% LAYER 4 — EXECUTION + VERIFICATION
+    %% ============================
+
+    subgraph L4["LAYER 4 — Execution + Verification<br/>Runtime + Audit Surfaces"]
+        IMPL["⚙️ Implementation Logs<br/>Implementer Output"]
+        VERIFY["🔍 Verification<br/>Auditor → Verifier"]
+        RECON["🧾 Reconciliation<br/>Reconciled DECOR + Artefacts"]
+        CLOSURE["🔒 Closure<br/>Finalisation + Approval"]
+    end
+
+    %% ============================
+    %% STACK RELATIONSHIPS
+    %% ============================
+
+    L0 --> L1
+    L1 --> L2
+    L2 --> L3
+    L3 --> L4
+
+    %% INTERNAL RELATIONSHIPS
+    DECOR --> PROJECT
+    DECOR --> BRANCH
+    DECOR --> THEME
+    DECOR --> TRANCHE
+
+    PROJECT --> BRANCH
+    BRANCH --> THEME
+    THEME --> TRANCHE
+    TRANCHE --> TICKET_LAYER
+
+    TRANCHE --> TMAP
+    TMAP --> TICKETS
+    TICKETS --> IMPL
+    IMPL --> REPLAY
+    REPLAY --> VERIFY
+    VERIFY --> RECON
+    RECON --> CLOSURE

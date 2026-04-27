@@ -1,0 +1,95 @@
+flowchart TB
+    %% Lanes
+    subgraph CURATOR["Curator (Governance Intent)"]
+        A1[Intake Mode<br/>Define tranche mission<br/>Define boundaries<br/>Define governance posture<br/>Define acceptance criteria]
+    end
+
+    subgraph INITIATOR["Initiator (Bootstrap Mode)"]
+        B1[Validate preamble]
+        B2[Create tranche folder structure]
+        B3[Create documentation envelope]
+        B4[Create DECOR envelope]
+        B5[Create Ticket Map skeleton]
+        B6[Register tranche]
+        B7[Handoff to Orchestrator]
+    end
+
+    subgraph CONDUCTOR["Conductor (Conceptual Mode)"]
+        C1[Interpret methodology preamble]
+        C2[Generate conceptual Ticket Map]
+        C3[Coordinate Methodologist + Architect]
+        C4[Enforce conceptual governance envelopes]
+        C5[Prepare conceptual artefacts]
+    end
+
+    subgraph ORCHESTRATOR["Orchestrator (Practical Mode)"]
+        D1[Interpret implementation preamble]
+        D2[Generate implementation Ticket Map]
+        D3[Enforce DECOR metadata]
+        D4[Enforce invariants & governance envelopes]
+        D5[Manage clarifications]
+        D6[Integrate surfaced technical truths]
+        D7[Initiate Architect Fill Phase]
+        D8[Coordinate reconciliation]
+        D9[Generate epilogue tickets]
+    end
+
+    subgraph ARCHITECT["Architect (Conceptual Reasoning)"]
+        E1[Derive Initial DECOR (decor.md)]
+        E2[Produce conceptual artefacts]
+        E3[Update DECOR]
+        E4[Clarify invariants & constraints]
+    end
+
+    subgraph HIERARCHY["Governance Hierarchy (v2.4)"]
+        P1[Project] --> P2[Branch] --> P3[Theme] --> P4[Tranche] --> P5[Ticket]
+    end
+
+    subgraph IMPLEMENTER["Implementer (Execution Mode)"]
+        F1[Implement ticket exactly as written]
+        F2[Produce code & tests]
+        F3[Produce replay traces]
+        F4[Produce implementation logs]
+        F5[Produce implementation documentation]
+        F6[Surface technical truths]
+    end
+
+    subgraph AUDITOR["Auditor (Drift Detection)"]
+        G1[Validate implementation]
+        G2[Validate documentation]
+        G3[Validate tests]
+        G4[Validate determinism]
+        G5[Validate DECOR alignment]
+        G6[Classify drift]
+        G7[Produce drift report]
+    end
+
+    subgraph VERIFIER["Verifier (Final Validation)"]
+        H1[Validate drift corrections]
+        H2[Validate epilogue tickets]
+        H3[Validate reconciled DECOR]
+        H4[Validate reconciled documentation]
+        H5[Validate reconciled tests]
+        H6[Validate determinism]
+        H7["Approve tranche closure (technical)"]
+    end
+
+    subgraph CLOSURE["Closure (Governance Approval)"]
+        I1[Conductor validates conceptual alignment]
+        I2[Curator validates governance alignment]
+        I3[Curator approves tranche closure]
+    end
+
+    %% Flow
+    A1 --> B1
+    B1 --> B2 --> B3 --> B4 --> B5 --> B6 --> B7
+    B7 --> D1
+    D1 -->|Methodology tranche| C1
+    C1 --> C2 --> C3 --> C4 --> C5 --> D2
+    D1 -->|Implementation tranche| D2
+    D2 --> D3 --> D4 --> D5 --> D6 --> D7 --> D8
+    D8 --> F1
+    F1 --> F2 --> F3 --> F4 --> F5 --> F6 --> G1
+    G1 --> G2 --> G3 --> G4 --> G5 --> G6 --> G7 --> H1
+    H1 --> H2 --> H3 --> H4 --> H5 --> H6 --> H7 --> I1
+    I1 --> I2 --> I3

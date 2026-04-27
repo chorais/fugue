@@ -1,0 +1,22 @@
+graph TD
+
+    %% Radial layout using concentric grouping
+    %% Outer → Inner: Project → Branch → Theme → Tranche → Ticket
+
+    subgraph PROJECT["📘 Project<br/>Root Governance Envelope"]
+        direction TB
+
+        subgraph BRANCH["🌿 Branch<br/>Parallel Stream"]
+            direction TB
+
+            subgraph THEME["🎨 Theme<br/>Multi‑Tranche Initiative"]
+                direction TB
+
+                subgraph TRANCHE["📦 Tranche<br/>Execution Unit"]
+                    direction TB
+
+                    TICKET["🎫 Ticket<br/>Atomic Work Item"]
+                end
+            end
+        end
+    end

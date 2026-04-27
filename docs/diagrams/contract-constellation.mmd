@@ -1,0 +1,70 @@
+graph TD
+
+    %% ============================
+    %% CENTRAL GOVERNANCE CORE
+    %% ============================
+
+    GOV["🛡️ Governance Envelope<br/>Root Governance Substrate"]
+
+    %% ============================
+    %% INNER RING — STRUCTURAL CONTRACTS
+    %% ============================
+
+    DECOR["📘 DECOR Specification<br/>Architectural + Governance Ledger"]
+    LIFECYCLE["🔄 Lifecycle Contract<br/>Phase + Transition Rules"]
+    IDENTITY["🧬 Identity Propagation<br/>Identity Lineage + Persona Rules"]
+    NAMING["🏷️ Naming Scheme<br/>Deterministic Naming Rules"]
+    NAMESPACE["📁 Namespace Scheme<br/>Folder + Placement Rules"]
+    DOCS["📚 Documentation Envelope<br/>Governed Documentation Rules"]
+    DETERMINISM["🎛️ Determinism Envelope<br/>Deterministic Execution Rules"]
+
+    GOV --- DECOR
+    GOV --- LIFECYCLE
+    GOV --- IDENTITY
+    GOV --- NAMING
+    GOV --- NAMESPACE
+    GOV --- DOCS
+    GOV --- DETERMINISM
+
+    %% ============================
+    %% MIDDLE RING — EXECUTION CONTRACTS
+    %% ============================
+
+    TMAP["🗺️ Ticket Map Contract<br/>Execution Plan + Persona Routing"]
+    TICKETS["🎫 Ticket Template<br/>Atomic Governed Work Items"]
+    REPLAY["🔁 Replay Trace Contract<br/>Deterministic Replay Model"]
+
+    DECOR --- TMAP
+    LIFECYCLE --- TMAP
+    IDENTITY --- TMAP
+    NAMESPACE --- TMAP
+    DOCS --- TMAP
+    DETERMINISM --- TMAP
+
+    TMAP --- TICKETS
+    TICKETS --- REPLAY
+
+    %% ============================
+    %% OUTER RING — LIFECYCLE EXECUTION
+    %% ============================
+
+    PROJECT["🏛️ Project Layer<br/>Project DECOR + Ticket Map"]
+    BRANCH["🌿 Branch Layer<br/>Branch DECOR + Ticket Map"]
+    THEME["🎨 Theme Layer<br/>Theme DECOR + Ticket Map"]
+    TRANCHE["📦 Tranche Layer<br/>Tranche DECOR + Ticket Map"]
+    TICKET["🎫 Ticket Layer<br/>Ticket Work Unit + Replay Surface"]
+
+    REPLAY --- PROJECT
+    REPLAY --- BRANCH
+    REPLAY --- THEME
+    REPLAY --- TRANCHE
+    REPLAY --- TICKET
+
+    %% ============================
+    %% ORBITAL RELATIONSHIPS
+    %% ============================
+
+    PROJECT --> BRANCH
+    BRANCH --> THEME
+    THEME --> TRANCHE
+    TRANCHE --> TICKET

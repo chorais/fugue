@@ -1,0 +1,485 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fugue-method.org/schemas/decor-schema.json",
+  "title": "DECOR (Declarative Contract of Record) v2.4",
+  "description": "Canonical JSON Schema for DECOR v2.4, aligned with the hybrid decor.md template.",
+  "type": "object",
+  "required": ["metadata"],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "Surface metadata for this DECOR instance.",
+      "required": [
+        "tranche-name",
+        "decor-version",
+        "author-persona",
+        "source",
+        "method",
+        "requires-fill",
+        "governance-envelope",
+        "identity-propagation-rules",
+        "persona-routing-summary",
+        "documentation-requirements",
+        "status",
+        "last-updated",
+        "schema",
+        "namespace"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tranche-name": { "type": "string" },
+        "decor-version": {
+          "type": "string",
+          "enum": ["v2.4"]
+        },
+        "author-persona": {
+          "type": "string",
+          "enum": ["Architect"]
+        },
+        "source": {
+          "type": "string",
+          "enum": ["Initial", "Update"]
+        },
+        "method": {
+          "type": "string",
+          "enum": ["A", "B"]
+        },
+        "requires-fill": { "type": "boolean" },
+        "governance-envelope": { "type": "string" },
+        "identity-propagation-rules": { "type": "string" },
+        "persona-routing-summary": {
+          "type": "string",
+          "enum": ["Architect", "Implementer", "Hybrid"]
+        },
+        "documentation-requirements": { "type": "string" },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Draft", "Active", "Superseded"]
+        },
+        "last-updated": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "schema": {
+          "type": "string",
+          "const": "/schemas/decor-schema.json"
+        },
+        "namespace": {
+          "type": "object",
+          "required": ["decor-root", "decor-updates", "reconciled-decor"],
+          "additionalProperties": false,
+          "properties": {
+            "decor-root": { "type": "string" },
+            "decor-updates": { "type": "string" },
+            "reconciled-decor": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "design": {
+      "type": "array",
+      "description": "Structured Design surfaces.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^D-[0-9]{3,}$" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "invariants": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "constraints": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "determinism": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "behaviour": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "state-transitions": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "outputs": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "logs": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "replay-traces": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "documentation": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "content-required": { "type": "boolean" },
+              "implementation-required": { "type": "boolean" },
+              "architect-required": { "type": "boolean" },
+              "documentation-required": { "type": "boolean" },
+              "governance-critical": { "type": "boolean" },
+              "determinism-critical": { "type": "boolean" },
+              "risk-critical": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+
+    "extensions": {
+      "type": "array",
+      "description": "Optional extension surfaces.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^E-[0-9]{3,}$" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "opportunities": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "risks": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "content-required": { "type": "boolean" },
+              "implementation-required": { "type": "boolean" },
+              "architect-required": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+
+    "considerations": {
+      "type": "array",
+      "description": "Invariants, constraints, governance envelopes, persona boundaries.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^C-[0-9]{3,}$" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "implications": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "invariants": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "constraints": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "governance-envelopes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "persona-boundaries": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "documentation-constraints": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "determinism-constraints": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "identity-propagation-constraints": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "method": {
+            "type": "string",
+            "enum": ["A", "B"]
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "content-required": { "type": "boolean" },
+              "implementation-required": { "type": "boolean" },
+              "architect-required": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+
+    "opportunities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^O-[0-9]{3,}$" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "benefits": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "content-required": { "type": "boolean" },
+              "implementation-required": { "type": "boolean" },
+              "architect-required": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^R-[0-9]{3,}$" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "mitigations": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "content-required": { "type": "boolean" },
+              "implementation-required": { "type": "boolean" },
+              "architect-required": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+
+    "open-questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "question", "blocking"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^Q-[0-9]{3,}$" },
+          "title": { "type": "string" },
+          "question": { "type": "string" },
+          "blocking": { "type": "boolean" },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "content-required": { "type": "boolean" },
+              "implementation-required": { "type": "boolean" },
+              "architect-required": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+
+    "naming": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reserved-prefixes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reserved-suffixes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "patterns": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "namespaces": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "hierarchy": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "identity-propagation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "anchors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "invariants": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "envelopes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "description", "enforced-by"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "description": { "type": "string" },
+              "enforced-by": {
+                "type": "string",
+                "enum": ["Conductor", "Architect", "Auditor"]
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "grounding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": ["A", "B"]
+        },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "justification": { "type": "string" }
+      }
+    },
+
+    "routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "persona": {
+          "type": "string",
+          "enum": ["architect", "implementer", "auditor", "hybrid"]
+        }
+      }
+    },
+
+    "evaluator": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "intake",
+            "orchestration",
+            "implementation",
+            "verification",
+            "closure"
+          ]
+        }
+      }
+    },
+
+    "changelog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["version", "date", "changes", "updated-by"],
+        "additionalProperties": false,
+        "properties": {
+          "version": { "type": "string" },
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "changes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "updated-by": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+flowchart TB
+
+    %% Styles
+    classDef persona fill:#e8f5e9,stroke:#7cb342,stroke-width:1px,color:#1b5e20;
+    classDef artifact fill:#ffffff,stroke:#999,stroke-width:1px,color:#333;
+    classDef process fill:#eef7ff,stroke:#7aa0d8,stroke-width:1px,color:#1a2a3a;
+    classDef continuity fill:#fff7e6,stroke:#e6a23c,stroke-width:1px,color:#5c3d00;
+
+    %% Personas
+    subgraph PERSONAS["Fugue Personas (All operated by one human operator)"]
+        CUR["Curator\n(Governance)"]:::persona
+        INIT["Initiator\n(Bootstrap)"]:::persona
+        ORCH["Orchestrator\n(Lifecycle)"]:::persona
+        ARCH["Architect\n(DECOR)"]:::persona
+        IMPL["Implementer\n(Execution)"]:::persona
+        AUD["Auditor\n(Reconciliation)"]:::persona
+        VER["Verifier\n(Verification)"]:::persona
+    end
+
+    %% Artefacts
+    subgraph ARTEFACTS["Durable Artefacts (v2.4 Project Memory)"]
+        PRE["tranche-preamble.md"]:::artifact
+        DECOR["decor.md\n(Initial DECOR)"]:::artifact
+        DUPS["decor-updates/"]:::artifact
+        RDECOR["reconciled-decor.md"]:::artifact
+        TM["ticket-map.md"]:::artifact
+        SESS["session-logs/"]:::artifact
+        TRACE["replay-traces/"]:::artifact
+        CLOS["closure-report.md"]:::artifact
+    end
+
+    %% Continuity
+    subgraph CONTINUITY["Continuity Mechanisms (Operational Patterns)"]
+        RSG["Restart Seeding Guide"]:::continuity
+        TRP["Tranche Resume Pattern"]:::continuity
+        RCC["Restart Continuity Contract"]:::continuity
+    end
+
+    %% Flows: Persona → Artefact
+    INIT --> PRE
+    ARCH --> DECOR
+    ARCH --> DUPS
+    ORCH --> TM
+    IMPL --> SESS
+    IMPL --> TRACE
+    AUD --> RDECOR
+    ORCH --> CLOS
+    CUR --> CLOS
+
+    %% Continuity Flows
+    PRE --> RCC
+    RDECOR --> RCC
+    TM --> TRP
+    SESS --> TRP
+
+    RCC --> ORCH
+    TRP --> ORCH
+    RSG --> ORCH
+
+    %% Lifecycle Spine
+    PH1[Bootstrap] --> PH2[Interpretation] --> PH3[Implementation] --> PH4[Reconciliation] --> PH5[Verification] --> PH6[Closure]
+    ARCH --> PH2
+    ORCH --> PH1
+    ORCH --> PH2
+    ORCH --> PH3
+    ORCH --> PH4
+    ORCH --> PH6
+    IMPL --> PH3
+    AUD --> PH4
+    VER --> PH5
+    CUR --> PH6
+
+    %% Handoff Flow
+    VER --> ORCH

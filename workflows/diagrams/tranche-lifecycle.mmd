@@ -1,0 +1,22 @@
+flowchart TD
+    A[Bootstrap complete] --> B[Interpretation Phase<br/>Orchestrator + Architect]
+
+    B --> C[Architect formalises Initial DECOR<br/>decor.md + metadata]
+    C --> D[Orchestrator initialises Ticket Map<br/>tickets, sequencing, metadata]
+    D --> E[Architect applies DECOR grounding strategy<br/>within Interpretation]
+
+    E --> F[Implementation Phase<br/>Orchestrator + Implementer]
+    F --> G[Ticket Loop Workflow<br/>sequential ticket execution]
+
+    G --> H[Reconciliation Phase<br/>Auditor + Architect + Orchestrator]
+    H --> I[Drift classification<br/>DECOR updates formalised]
+    I --> J[Reconciled DECOR produced]
+    J --> K[Verification Phase<br/>Verifier]
+    K --> L[Run golden, dark, governance, replay tests]
+
+    L --> M{All verification checks pass?}
+    M -- No --> H
+    M -- Yes --> N[Closure Phase<br/>Orchestrator + Curator]
+
+    N --> O[Closure actions<br/>closure report, archival]
+    O --> P[Tranche closed]

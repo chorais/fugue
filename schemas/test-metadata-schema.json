@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fugue.dev/schemas/test-metadata-schema.json",
+  "title": "Fugue Test Metadata Schema (v2.4)",
+  "description": "Canonical metadata schema for all Fugue v2.4 test artefacts.",
+  "type": "object",
+  "required": [
+    "test-id",
+    "tranche",
+    "ticket",
+    "test-type",
+    "governance-envelope",
+    "determinism-envelope",
+    "documentation-envelope",
+    "identity-propagation-contract",
+    "namespace-scheme-contract",
+    "evaluator-contract",
+    "replay-trace-contract",
+    "lifecycle-contract",
+    "naming-scheme",
+    "namespace-scheme",
+    "identity-propagation",
+    "status",
+    "last-updated"
+  ],
+  "properties": {
+    "test-id": {
+      "type": "string",
+      "pattern": "^([a-z-]+)-test-[0-9]+(\\.[0-9]+)*$",
+      "description": "Unique identifier for the test instance."
+    },
+    "tranche": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+\\.[a-z0-9]+\\.[a-z0-9-]+$",
+      "description": "Tranche name following <branch>.<theme>.<semantic-name>."
+    },
+    "ticket": {
+      "type": "string",
+      "pattern": "^T[0-9]+$",
+      "description": "Ticket ID following T<number>."
+    },
+    "test-type": {
+      "type": "string",
+      "enum": [
+        "dark",
+        "golden",
+        "governance",
+        "replay"
+      ],
+      "description": "Type of test."
+    },
+    "governance-envelope": {
+      "type": "string",
+      "description": "ID of the governance envelope governing this test."
+    },
+    "determinism-envelope": {
+      "type": "string",
+      "description": "ID of the determinism envelope governing this test."
+    },
+    "documentation-envelope": {
+      "type": "string",
+      "description": "ID of the documentation envelope governing this test."
+    },
+    "identity-propagation-contract": {
+      "type": "string",
+      "description": "ID of the identity propagation contract."
+    },
+    "namespace-scheme-contract": {
+      "type": "string",
+      "description": "ID of the namespace scheme contract."
+    },
+    "evaluator-contract": {
+      "type": "string",
+      "description": "ID of the evaluator contract."
+    },
+    "replay-trace-contract": {
+      "type": "string",
+      "description": "ID of the replay trace contract."
+    },
+    "lifecycle-contract": {
+      "type": "string",
+      "description": "ID of the lifecycle contract."
+    },
+    "naming-scheme": {
+      "type": "string",
+      "enum": [
+        "v2.4"
+      ],
+      "description": "Naming scheme version."
+    },
+    "namespace-scheme": {
+      "type": "string",
+      "enum": [
+        "v2.4"
+      ],
+      "description": "Namespace scheme version."
+    },
+    "identity-propagation": {
+      "type": "string",
+      "enum": [
+        "v2.4"
+      ],
+      "description": "Identity propagation version."
+    },
+    "determinism-critical": {
+      "type": "boolean",
+      "description": "Whether determinism is critical for this test."
+    },
+    "governance-critical": {
+      "type": "boolean",
+      "description": "Whether governance alignment is critical for this test."
+    },
+    "identity-critical": {
+      "type": "boolean",
+      "description": "Whether identity propagation is critical for this test."
+    },
+    "namespace-critical": {
+      "type": "boolean",
+      "description": "Whether namespace correctness is critical for this test."
+    },
+    "evaluator-critical": {
+      "type": "boolean",
+      "description": "Whether evaluator behaviour is critical for this test."
+    },
+    "replay-critical": {
+      "type": "boolean",
+      "description": "Whether replay determinism is critical for this test."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "In-Progress",
+        "Complete"
+      ],
+      "description": "Execution status of the test."
+    },
+    "last-updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the test metadata was last updated."
+    }
+  }
+}
