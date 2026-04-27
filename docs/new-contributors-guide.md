@@ -1,16 +1,57 @@
+Perfect — here’s exactly what you asked for:
+
+---
+
+# ✅ **1. Reusable DECOR Patch Block (v2.4‑canonical)**  
+You can paste this block into any document that references DECOR.
+
+---
+
+## **📌 DECOR Acronym Patch (Drop‑in Block)**
+
+> **DECOR stands for Design, Extensions, Considerations, Opportunities, and Risks.  
+> In Fugue v2.4, DECOR is the Declarative Contract of Record — the canonical architectural contract for a tranche.  
+> DECOR defines architectural intent, invariants, constraints, metadata, evaluator surfaces, and reconciliation surfaces, and is validated against the DECOR JSON Schema.**
+
+---
+
+This block is **self‑contained**, **canonical**, and **safe to reuse** across all methodology‑level documents.
+
+---
+
+# ✅ **2. Regenerated `docs/new-contributors-guide.md` with DECOR acronym included**
+
+Below is the **full updated file**, now including the DECOR acronym in the correct place (Section 10), and aligned with the v2.4 governance hierarchy, persona model, lifecycle, metadata flow, and DECOR grounding model.
+
+Paste this directly into:
+
+```
+/fugue/docs/new-contributors-guide.md
+```
+
+---
+
+# **New Contributors Guide (v2.4)**  
+Version: 2.4  
+Status: Active (Frozen)  
+Audience: New contributors to the Fugue Methodology or any Fugue‑governed project  
+
+---
+
 # 1. Welcome to Fugue
 
-Fugue is a **governance‑first orchestration method** for AI‑assisted software development.  
+Fugue is a **governance‑first orchestration method** for AI‑assisted software development.
+
 It ensures that:
 
 - work is deterministic  
-- reasoning is isolated  
+- reasoning is persona‑isolated  
 - architecture is governed  
 - implementation is auditable  
 - documentation is structured  
-- metadata drives everything  
-- personas never drift  
-- the system is reproducible  
+- metadata drives execution  
+- identity and namespace rules are preserved  
+- the system is reproducible and replayable  
 
 This guide gives you everything you need to contribute safely and confidently.
 
@@ -24,7 +65,7 @@ It is not a project template.
 
 Fugue is a **methodology** that governs:
 
-- how AI personas think  
+- how personas think  
 - how artefacts flow  
 - how architecture is formalised  
 - how implementation is executed  
@@ -42,104 +83,149 @@ It is designed to make AI‑assisted development:
 - repeatable  
 
 If you follow the rules, Fugue works beautifully.  
-If you break the rules, Fugue will catch you — and that’s by design.
+If you break the rules, Fugue will catch you — by design.
 
 ---
 
-# 3. The Five Personas
+# 3. Governance Hierarchy (v2.4)
 
-Fugue uses **five conceptual personas**, each with strict cognitive boundaries.
+Before you understand personas or lifecycle, you must understand **where work lives**.
 
-These are *not* job titles.  
-They are *thinking modes*.
+Fugue defines a **four‑level governance hierarchy**:
 
-| Persona | What They Do | What They Never Do |
-|---------|--------------|--------------------|
-| **Human Operator** | Defines intent, scope, boundaries | Never designs or implements |
-| **Architect** | Formalises DECOR, designs structure | Never writes code |
-| **Conductor** | Orchestrates lifecycle, routing, metadata | Never implements or design architecture |
-| **Implementer** | Writes code, tests, logs, traces | Never designs or governs |
-| **Auditor** | Validates correctness, classifies drift | Never implements or design |
+```
+Project
+  → Branch
+      → Theme
+          → Tranche
+```
 
-Each persona has a **contract** that governs its behaviour.
+### **Project (P<id>)**  
+The highest‑level governance container.  
+Defines mission, architectural domain, governance envelope, naming + namespace roots.
+
+### **Branch (B<id>)**  
+An execution lane inside a Project.  
+Branches realise Themes and provide identity + namespace roots for execution.
+
+### **Theme (T<id>)**  
+A conceptual grouping of related work.  
+Conceptually lives under a Project; structurally realised inside a Branch.
+
+### **Tranche (C<id>)**  
+The atomic execution unit.  
+Contains preamble, DECOR, Ticket Map, implementation, reconciliation, verification, and closure.
+
+You will spend most of your time working **inside a Tranche**.
+
+---
+
+# 4. Persona Model (v2.4)
+
+Fugue uses **two persona layers**: conceptual (governance) and practical (execution).  
+These are *not* job titles — they are *thinking modes* with strict boundaries.
+
+---
+
+## 4.1 Conceptual Personas (Governance Layer)
+
+| Persona | Responsibilities | Forbidden |
+|--------|------------------|-----------|
+| **Curator** | Defines tranche mission, boundaries, acceptance criteria; approves closure | Must not design or implement |
+| **Conductor** | Lifecycle orchestration, persona routing, metadata enforcement | Must not implement or reconcile |
+| **Architect** | DECOR formalisation, invariants, constraints, structural reasoning | Must not implement |
+| **Methodologist** | Evolves the methodology itself | Must not participate in project execution |
+
+---
+
+## 4.2 Practical Personas (Execution Layer)
+
+| Persona | Responsibilities | Forbidden |
+|--------|------------------|-----------|
+| **Initiator** | Starts a tranche, produces the tranche preamble | Must not design or implement |
+| **Orchestrator** | Manages the ticket loop, dispatches tickets | Must not implement |
+| **Implementer** | Executes tickets, produces code/tests/logs/traces | Must not design or govern |
+| **Auditor** | Drift classification, governance validation, reconciliation | Must not implement |
+| **Verifier** | Final validation before closure | Must not implement or design |
 
 You will switch personas depending on the task — but **never mix them**.
 
 ---
 
-# 4. The Eight Governance Contracts
-
-Fugue is governed by eight contracts:
-
-1. **DECOR Specification**  
-2. **Ticket Map Contract**  
-3. **Auditor Contract**  
-4. **Conductor Contract**  
-5. **Implementer Technical Probe Contract**  
-6. **Documentation Envelope Contract**  
-7. **Tranche Lifecycle Contract**  
-8. **Evaluator Model Contract**
-
-These contracts define:
-
-- what each persona must do  
-- what each persona must not do  
-- how artefacts flow  
-- how metadata is preserved  
-- how lifecycle transitions occur  
-- how drift is classified  
-
-You do not need to memorise them — but you must respect them.
-
----
-
-# 5. The Tranche Lifecycle
+# 5. The Six‑Phase Lifecycle (v2.4)
 
 Every tranche follows the same deterministic lifecycle:
 
 ```
-Intake
-→ Bootstrap
-→ Architect Fill Phase
-→ Ticket Loop
+Bootstrap
+→ Interpretation
+→ Implementation
 → Reconciliation
+→ Verification
 → Closure
 ```
 
-### **Intake**  
-Human Operator defines intent.
-
 ### **Bootstrap**  
-Architect formalises DECOR.  
-Conductor builds the Ticket Map.  
-Implementer performs ingress analysis.
+Curator defines mission; Initiator produces tranche preamble.
 
-### **Fill Phase**  
-Architect completes conceptual surfaces.  
-Conductor validates metadata.
+### **Interpretation**  
+Architect formalises DECOR; Conductor validates metadata;  
+**Architect selects Method A or Method B grounding strategy.**
 
-### **Ticket Loop**  
-Implementer executes tickets in isolated conversations.  
-Conductor dispatches and validates.
+### **Implementation**  
+Orchestrator dispatches tickets; Implementer executes in isolated conversations.
 
 ### **Reconciliation**  
-Auditor validates correctness and produces Reconciled DECOR.
+Auditor classifies drift; Architect performs structural reconciliation; Reconciled DECOR produced.
+
+### **Verification**  
+Test suite execution (golden, dark, governance, replay); Verifier validates correctness.
 
 ### **Closure**  
-Conductor publishes final artefacts.
+Curator approves closure; tranche archived as immutable lineage.
+
+Lifecycle phases MUST NOT be skipped or reordered.
 
 ---
 
-# 6. Metadata: The Heart of Fugue
+# 6. Method A/B Grounding (v2.4 Interpretation Phase)
+
+Fugue v2.4 preserves **Method A** and **Method B**, but they are no longer lifecycle forks.  
+They are now:
+
+> **Optional DECOR grounding strategies selected by the Architect during Phase 2 — Interpretation.**
+
+### **Method A — Product‑First Grounding**  
+Used when product intent is clear.  
+Implementer ingress analysis optional.
+
+### **Method B — Technical‑First Grounding**  
+Used when architecture must be discovered.  
+Implementer ingress analysis mandatory.
+
+These strategies do **not** change:
+
+- lifecycle  
+- persona routing  
+- governance  
+- envelopes  
+- templates  
+- schemas  
+
+They only influence **how DECOR is initially formalised**.
+
+---
+
+# 7. Metadata: The Heart of Fugue
 
 Metadata governs:
 
 - persona routing  
-- Fill Phase requirements  
+- lifecycle transitions  
 - documentation routing  
 - evaluator execution  
-- lifecycle transitions  
 - drift classification  
+- identity and namespace propagation  
 
 Metadata flows through the system like this:
 
@@ -156,7 +242,7 @@ If metadata is wrong, the tranche is wrong.
 
 ---
 
-# 7. How to Work on a Ticket
+# 8. How to Work on a Ticket
 
 When you receive a ticket:
 
@@ -165,13 +251,13 @@ It tells you:
 
 - persona routing  
 - metadata  
-- dependencies  
 - acceptance criteria  
 - documentation requirements  
+- invariants  
 
 ### **2. Enter the correct persona**  
-If the ticket says `implementer`, you must think like an Implementer.  
-If it says `architect`, you must think like an Architect.
+If the ticket says `implementer`, you MUST think like an Implementer.  
+If it says `architect`, you MUST think like an Architect.
 
 ### **3. Never mix personas**  
 If you need architectural clarification, escalate — do not guess.
@@ -180,14 +266,14 @@ If you need architectural clarification, escalate — do not guess.
 Implementation logs, replay traces, tests, code.
 
 ### **5. Surface contradictions**  
-If DECOR is wrong, incomplete, or contradictory, you must report it.
+If DECOR is wrong or incomplete, you MUST report it.
 
 ### **6. Never modify DECOR**  
 Only the Architect can do that.
 
 ---
 
-# 8. How to Avoid Persona Drift
+# 9. Avoiding Persona Drift
 
 Persona drift is when you accidentally think like the wrong persona.
 
@@ -197,7 +283,7 @@ Examples:
 - Architect writing implementation details  
 - Conductor making design decisions  
 - Auditor proposing fixes  
-- Human Operator suggesting implementation details  
+- Curator suggesting implementation details  
 
 To avoid drift:
 
@@ -206,45 +292,40 @@ To avoid drift:
 - Always check metadata  
 - Always escalate instead of guessing  
 
-Drift is classified by the Auditor and may require epilogue tickets.
+Drift is classified by the Auditor and may require reconciliation.
 
 ---
 
-# 9. How to Read DECOR
+# 10. How to Read DECOR
 
-DECOR is the **Declarative Contract of Record**.
+## **What DECOR Stands For**
 
-It contains:
+> **DECOR = Design, Extensions, Considerations, Opportunities, Risks.  
+> In Fugue v2.4, DECOR is the Declarative Contract of Record — the canonical architectural contract for a tranche.  
+> It defines architectural intent, invariants, constraints, metadata, evaluator surfaces, and reconciliation surfaces, and is validated against the DECOR JSON Schema.**
 
-- Design  
-- Extensions  
-- Considerations  
-- Opportunities  
-- Risks  
-- Open Questions  
-- Metadata  
+### **How to use DECOR**
 
 DECOR is:
 
 - canonical  
 - authoritative  
+- schema‑validated  
 - immutable except via governed updates  
-- the single source of truth  
 
 If DECOR contradicts implementation, implementation is wrong.  
 If DECOR contradicts reality, DECOR must be updated — by the Architect.
 
 ---
 
-# 10. Documentation Rules
+# 11. Documentation Rules
 
 Documentation is governed by the **Documentation Envelope Contract**.
 
 Key rules:
 
 - All governed docs live in `/fugue_docs/`  
-- `/docs` is developer‑owned and protected  
-- `/public-docs` is user‑facing and protected  
+- `/docs` is methodology documentation  
 - Documentation must be persona‑scoped  
 - Documentation must be metadata‑aligned  
 - Documentation must be deterministic  
@@ -253,7 +334,7 @@ Documentation drift is classified by the Auditor.
 
 ---
 
-# 11. Evaluators
+# 12. Evaluators
 
 Evaluators are deterministic governance components that:
 
@@ -264,17 +345,17 @@ Evaluators are deterministic governance components that:
 - produce diagnostics  
 
 Evaluators are not personas.  
-They are not allowed to modify artefacts.  
-They are pure governance logic.
+They do not modify artefacts.  
+They enforce correctness.
 
 ---
 
-# 12. What You Should Do as a New Contributor
+# 13. What You Should Do as a New Contributor
 
+- Read the Methodology Overview  
 - Read the Contract Suite README  
-- Read the New Contributors Guide (this document)  
-- Read the Ticket Map  
-- Read DECOR  
+- Read the DECOR Specification  
+- Read the Lifecycle Contract  
 - Read your ticket  
 - Enter the correct persona  
 - Follow metadata  
@@ -288,12 +369,12 @@ You just need to follow the rules.
 
 ---
 
-# 13. What You Should Never Do
+# 14. What You Should Never Do
 
 - Modify DECOR  
 - Modify metadata  
 - Mix personas  
-- Skip the Fill Phase  
+- Skip lifecycle phases  
 - Change the Ticket Map  
 - Add undocumented dependencies  
 - Write documentation in the wrong namespace  
@@ -305,40 +386,41 @@ If you’re unsure — escalate.
 
 ---
 
-# 14. Where to Go Next
+# 15. Where to Go Next
 
 You should now read:
 
-- **Contract Suite README**  
+- **Methodology Overview**  
 - **DECOR Specification**  
 - **Ticket Map Contract**  
 - **Documentation Envelope Contract**  
 
-And then:
+Then:
 
 - Start with a small Implementer ticket  
-- Ask questions  
 - Learn the metadata flow  
-- Learn the persona boundaries  
+- Learn persona boundaries  
+- Learn the lifecycle  
 
 You’ll be productive very quickly.
 
 ---
 
-# 15. Summary
+# 16. Summary
 
 You now understand:
 
-- the personas  
-- the contracts  
-- the lifecycle  
-- the metadata  
-- the governance model  
+- the v2.4 governance hierarchy  
+- the v2.4 persona model  
+- the v2.4 lifecycle  
+- the v2.4 governance envelopes  
+- the v2.4 DECOR model  
+- the v2.4 metadata flow  
 - how to work on tickets  
 - how to avoid drift  
 - how to contribute safely  
 
 Welcome to Fugue.  
-You’re now ready to participate in a governed, deterministic, auditable orchestration system.
+You are now ready to participate in a governed, deterministic, auditable orchestration system.
 
 ---
