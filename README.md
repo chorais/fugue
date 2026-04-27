@@ -27,23 +27,42 @@ This repository contains the **authoritative specification** of the Fugue Method
 
 If you are new to Fugue, begin with:
 
-### **1. New Contributors Guide**  
-`/docs/new-contributors-guide.md`  
+### **1. [New Contributors Guide](docs/new-contributors-guide.md)**  
 A complete onboarding guide covering personas, lifecycle, metadata, namespaces, and safe execution.
 
-### **2. Methodology Overview**  
-`/docs/methodology-overview.md`  
+### **2. [Methodology Overview](docs/methodology-overview.md)**  
+
 A high‑level explanation of the v2.4 method, lifecycle, governance hierarchy, and DECOR model.
 
-### **3. Persona Instructions**  
+### **3. [Persona Instructions](personas/conceptual/)**  
 `/personas/conceptual/*`  
 Defines the conceptual cognitive boundaries of Architect, Conductor, Curator, and Methodologist.
 
-### **4. Practical Execution Personas**  
+### **4. [Practical Execution Personas](personas/practical/)**  
 `/personas/practical/*`  
 Defines Initiator, Orchestrator, Implementer, Auditor, and Verifier.
 
-These four surfaces provide the complete conceptual and practical foundation for working inside Fugue.
+### **5. [Fugue Glossary](docs/fugue-glossary.md)**  
+Canonical terminology for governance, lifecycle, DECOR, personas, and artefact naming.
+
+### **6. [Solo Developer Quickstart](docs/solo-developer-quickstart.md)**  
+The fastest entry point if you want to try Fugue end-to-end without a full team setup.
+
+### **7. [Starting a Fugue Project](docs/guides/starting-a-fugue-project.md)**  
+Practical setup guidance for creating a new Fugue-governed project structure.
+
+### **8. [Contract Suite Index](contracts/contract-suite-index.md)**  
+The reference index for the methodology's governed contract set.
+
+These surfaces provide the core conceptual foundation, role guidance, and reference entry points for working inside Fugue.
+
+## Quick Paths by Audience
+
+- **[For CTOs](docs/fugue-for-ctos.md)**
+- **[For Directors and Heads of Engineering](docs/fugue-for-directors-and-heads-of-engineering.md)**
+- **[For Engineering Managers](docs/fugue-for-engineering-managers.md)**
+- **[For Solo Developers](docs/fugue-for-solo-developers.md)**
+- **[When Not to Use Fugue](docs/when-not-to-use-fugue.md)**
 
 ---
 
