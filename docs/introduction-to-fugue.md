@@ -228,13 +228,13 @@ flowchart TD
 
     subgraph Bootstrap_Phase["Bootstrap Phase"]
         O[Orchestrator Persona\n Orchestration Mode]:::persona
-        D0[Initial DECOR (decor.md)\ndecor.md]:::artefact
+        D0["Initial DECOR (decor.md)\ndecor.md"]:::artefact
         TM[Ticket Map\nticket-map.md]:::artefact
     end
 
     subgraph Ticket_Loop_Phase["Ticket Loop Phase"]
         IMP[Implementer Persona\nImplementation Mode]:::persona
-        TICKET[Implementation Tickets (ticket-T*.md)\nticket-T*.md]:::artefact
+        TICKET["Implementation Tickets (ticket-T*.md)\nticket-T*.md"]:::artefact
         CODE[Code + Tests + Logs\nImplementation Outputs]:::artefact
         TRACE[Replay Traces\ntrace-*.json]:::artefact
     end
